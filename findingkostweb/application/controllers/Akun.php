@@ -22,29 +22,37 @@ class Akun extends CI_Controller {
                 redirect('pencari');
             }
         } else {
-            $this->masuk();
+            redirect('akun/masuk');
         }
     }
-    
-    public function masuk($fail = NULL)
-    {
-        $this->load->helper('form');
-        $data['title'] = "Login";
-        $data['fail'] = ( isset($fail) ? true : false );
-        $this->load->view('header', $data);
-        $this->load->view('nav');
-        $this->load->view('akun/masuk', $data);
-        $this->load->view('footer');
-    }
 
-    public function profil($username)
+    public function masuk(){
+        $data = [
+            'title' => 'FindingKos',
+            'link'  => base_url(),
+            'icon'  => img( 'assets/images/favicon.gif', FALSE, ['height' => '80'] )
+        ];
+        $this->parser->parse('akun/masuk', $data);
+    }
+    
+    public function profil($username = NULL)
     {
-        $data['profil'] = $this->akun_model->cek_akun($username);
-        $data['title'] = "Profil";
-        $this->load->view('header', $data);
-        $this->load->view('nav');
-        $this->load->view('akun/profil', $data);
-        $this->load->view('footer');
+        if(isset($username)){
+            $profil = $this->akun_model->cek_akun($username);
+            if ( ! $profil ) {
+                show_404();
+            }
+            $data = [
+                'title'   => 'FindingKos | ' . ucwords($profil->nama),
+                'nama'    => ucwords($profil->nama),
+                'email'   => $profil->email,
+                'alamat'  => $profil->alamat,
+                'telepon' => $profil->telepon
+            ];
+            $this->parser->parse('akun/profil', $data);
+        } else {
+            redirect('akun');
+        }
     }
 
     public function keluar()
@@ -64,7 +72,6 @@ class Akun extends CI_Controller {
         $user = $this->akun_model->cek_akun($username);
         $pass1 = md5($password);
         $pass2 = $user->password;
-            
         if ( isset($user) AND $pass1 == $pass2 ) {
             $data = array(
                 'username'=>$user->username,
@@ -77,7 +84,7 @@ class Akun extends CI_Controller {
         } 
         else
         {
-            redirect('akun/masuk/fail');
+            redirect('akun/masuk?fail=true');
         }
     }
 }

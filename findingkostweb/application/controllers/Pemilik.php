@@ -1,18 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-include('Akun.php');
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of PemilikKos
- *
- * @author Galih
- */
 class Pemilik extends CI_Controller {
     
     function __construct(){
@@ -24,13 +12,15 @@ class Pemilik extends CI_Controller {
         } else
         {
             if ( $tipe === 0 ) {
-                //admin page
+                redirect('admin');
             } else
             if ( $tipe === 1 ){
                 // let them in
             } else 
-            if ( $tipe === 2 ){
+            if ( $tipe === 2 ) {
                 redirect('pencari');
+            } else {
+                show_404();
             }
         }
 

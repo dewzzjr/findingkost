@@ -7,17 +7,12 @@ class Daftar extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('akun_model');
-        $this->load->helper('form');
         $this->load->library('form_validation');
     }
 
     public function index()
     {
-        $data['title'] = "Daftar";
-        $this->load->view('header', $data);
-        $this->load->view('nav');
-        $this->load->view('akun/menu-daftar');
-        $this->load->view('footer');
+        $this->load->view('akun/daftar');
     }
 
     public function pencari(){

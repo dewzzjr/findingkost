@@ -33,7 +33,7 @@ $link = [
 ]
 ];
 echo meta($meta);
-echo '<title>' . $title . '</title>';
+echo '<title>{title}</title>';
 echo '';
 foreach ($link as $href) {
     echo link_tag($href);

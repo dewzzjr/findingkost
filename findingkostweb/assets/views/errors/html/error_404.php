@@ -54,11 +54,14 @@ p {
 	margin: 12px 15px 12px 15px;
 }
 </style>
+<?php $this->load->view('header'); ?>
 </head>
 <body>
-	<div id="container">
+    <?php $this->load->view('nav'); ?>
+    	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
 	</div>
+    <?php $this->load->view('footer'); ?>
 </body>
 </html>

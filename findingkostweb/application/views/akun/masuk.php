@@ -1,73 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<?php
+$this->load->view('header'); 
+?>
+</head>
+<body>
 
-<!-- Main Content -->
-<div class="container">
-	<div class="row">
-		<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-		   
-			<!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
-			<!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
-			<!-- NOTE: To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
-			
-		</div>
-	</div>
-</div>
-
-
-<!-- Page Header -->
-<!-- Set your background image for this header on the line below. -->
-<section id="masuk">
-<!--header class="intro-header" style="background-image: url('<?= base_url('assets/img/masuk.jpg');?>')"-->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="page-heading">
-
-                    <br><br><br>
-                    <?php if($fail) { ?>
-                        <p class="text-danger">Nama pengguna atau kata sandi yang dimasukkan salah</p>
-                    <?php } ?>
-                    <?php echo form_open('akun/submit_masuk'); ?>	
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Nama Pengguna</label>
-                                <input type="text" 
-                                       name="username" 
-                                       class="form-control" 
-                                       placeholder="Nama Pengguna" 
-                                       id="name" 
-                                       required data-validation-required-message="Masukkan nama pengguna Anda">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Kata Sandi</label>
-                                <input type="password" 
-                                       name="password" 
-                                       class="form-control" 
-                                       placeholder="Kata Sandi" 
-                                       id="password" 
-                                       required data-validation-required-message="Masukkan kata sandi Anda">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" name="masuk" class="btn btn-default">Masuk</button>
-                            </div>
-                        </div>
-                        </form>
-                        <em>dapatkan akun 
-                            <a href="<?= base_url('daftar');?>">
-                                <strong>disini</strong>
-                            </a>
-                        </em>
+<div class="row vertical-center valign-wrapper">
+    <div class="valign hoverable card-panel col s12 m8 offset-m2 l6 offset-l3">
+            <div class="row" style="margin-top: 15px">
+                <span class="card-title">
+                <a class="indigo-text darken-4" target="_self" href="{link}">
+                    <!--<strong>Pencarian</strong>-->
+                <div class="push-m1 col s12 m4 center-on-small-only">
+                    {icon}
                 </div>
+                <div class="right-aligned col s12 m2 center-on-small-only">
+                    <h3 class="indigo-text darken-4">Finding<strong>Kost</strong></h3>
+                </div>
+                </a>
+                </span>
             </div>
-        </div>
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs">
+                    <li class="tab col s6">
+                        <a class="active indigo-text darken-4"href="#login">Masuk</a>
+                    </li>
+                    <li class="tab col s6">
+                        <a class="indigo-text darken-4" href="#signup">Daftar</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="login" class="col s12"><?php $this->load->view('akun/v_login');?></div>
+            <div id="signup" class="col s12"><?php $this->load->view('akun/v_signup');?></div>
+        </div>    
     </div>
-<!--/header-->
-</section>
-<hr>
+</div>
+<?php 
+$this->load->view('footer'); 
+?>
+<script>
+    var Materialize;
+    $(document).ready(function(){
+        $('ul.tabs').tabs('select_tab', 'tab_id');
+        if(location.search !== ""){
+            Materialize.toast('Username atau Password Anda Salah!', 5000);
+        }
+    });
+</script>
+</body>
+</html>

@@ -10,8 +10,7 @@ class Kos_model extends CI_Model {
     function kos($id){
         $this->db->select('*');
         $this->db->from('kos');
-        $this->db->join('akun','kos.id_pemilik = akun.id');
-        $this->db->where('kos.id', $id);
+        $this->db->where('id', $id);
         $query = $this->db->get();
         return $query->row();
     }
@@ -21,7 +20,7 @@ class Kos_model extends CI_Model {
         return $query;
     }
 
-    function akun_penghuni($id_kos) {
+    function akun_penghuni ( $id_kos ) {
         $query = $this->db->get_where('penghuni', array('id_kos'=>$id_kos));
         return $query->result();
     }

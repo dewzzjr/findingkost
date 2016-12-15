@@ -5,20 +5,23 @@ class Pencari extends CI_Controller {
 	
     function __construct(){
         parent::__construct();        
-        $tipe = $this->session->userdata('tipe');
+        $tipe = $this->session->tipe;
         
         if ( !$this->session->has_userdata('username') ){
             redirect('akun/masuk');
         } else
         {
             if ( $tipe == 0 ) {
-                //admin page
+                redirect('admin');
             } else
             if ( $tipe == 1 ){
                 redirect('pemilik');
             } else 
-            if ( $tipe == 2 ){
+            if ( $tipe == 2 ) {
                 // let them in
+            } else
+            {
+                show_404();
             }
         }
 
@@ -35,7 +38,6 @@ class Pencari extends CI_Controller {
         $this->load->view('pencari/menu');
         $this->load->view('akun/profil', $data);
         $this->load->view('footer');
- 
     }
 
     public function kos(){
