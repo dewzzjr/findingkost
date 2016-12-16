@@ -25,10 +25,29 @@ $this->load->view('header');
                 </span>
             </div>
         <div class="row">
-            <div class="col s12" align="center">
-                <a class="waves-effect waves-light btn" href="<?php echo base_url('Admin/detail'); ?>">Manage User</a>
-                <a class="waves-effect waves-light btn" href="<?php echo base_url('Akun/keluar'); ?>">Log Out</a> 
+        
+        <?php foreach ($akun as $ak) {
+        ?>     
+        <form method="post" action="<?php  echo base_url('admin/updateUser/') ?>">
+            <div class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <input id="id" name="id" type="hidden" class="validate" value="<?php echo $ak->id; ?>">
+                      <input id="name" name="name" type="text" class="validate" value="<?php echo $ak->nama; ?>">
+                      <label for="first_name">Nama</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="username" name="username" type="text" class="validate" value="<?php echo $ak->username; ?>" >
+                      <label for="first_name">Username</label>
+                    </div>
+                    <div align="center">
+                    <button type="submit" id="submit" name="submit" class="waves-effect waves-light btn" >Submit</button>
+                    <a class="waves-effect waves-light btn" href="<?php echo base_url('admin/detail'); ?>">Back</a>
+                    </div>
+                </div>
             </div>
+        </form>  
+        <?php } ?>      
         </div>    
     </div>
 </div>

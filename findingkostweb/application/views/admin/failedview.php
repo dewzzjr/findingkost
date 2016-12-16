@@ -26,8 +26,8 @@ $this->load->view('header');
             </div>
         <div class="row">
             <div class="col s12" align="center">
-                <a class="waves-effect waves-light btn" href="<?php echo base_url('Admin/detail'); ?>">Manage User</a>
-                <a class="waves-effect waves-light btn" href="<?php echo base_url('Akun/keluar'); ?>">Log Out</a> 
+                <h3 class="indigo-text darken-4">Mohon maaf akun memiliki kos, penghapusan gagal</h3>
+                <a class="waves-effect waves-light btn" href="<?php echo base_url('admin/detail'); ?>">Back</a> 
             </div>
         </div>    
     </div>

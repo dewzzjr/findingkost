@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>FindingKost</title>
 <?php
 $this->load->view('header'); 
 ?>
@@ -18,7 +19,7 @@ $this->load->view('header');
                 </div>
                 <div class="right-aligned col s12 m2 center-on-small-only">
                     <h3 class="indigo-text darken-4">Finding<strong>Kost</strong></h3>
-                    <a>Administrator</a>
+                    <h6 class="indigo-text darken-4"><strong>Administrator</strong> Mode</h6>
                 </div>
                 </a>
                 </span>
@@ -31,9 +32,10 @@ $this->load->view('header');
                           <th data-field="name">Name</th>
                           <th data-field="username">Username</th>
                           <th data-field="role">Type</th>
+                          <th data-field="action" class="center-align">Action</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody >
                       <?php foreach ($akun as $ak) {
                       ?>
                       <tr>
@@ -49,6 +51,15 @@ $this->load->view('header');
                           echo 'Pencari';
                         }
                         ?></td>
+                        <td class="center-align"><a class="waves-effect waves-teal btn-flat" href="<?php echo base_url('admin/editUser/').$ak->idakun; ?>">Edit</a><a class="waves-effect waves-teal btn-flat" 
+                        <?php
+
+                          if ($ak->id == '') {
+                            echo 'disabled';
+                          }
+
+                         ?>
+                         href="<?php echo base_url('admin/deleteUser/'.$ak->id); ?>">Delete</a></td>
                         <?php
                         } ?>
                     </tbody>
