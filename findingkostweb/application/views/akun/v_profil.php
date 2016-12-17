@@ -1,6 +1,5 @@
-
 <div class="row">
-    <div class="col s12 m8 l6">
+    <div class="col s12">
         <ul class="collection">
             <li class="collection-item avatar">
                 <i class="material-icons circle blue">perm_contact_calendar</i>
@@ -36,5 +35,5 @@
                 </a>
             </li>
         </ul>
-    </div>  
+    </div>
 </div>

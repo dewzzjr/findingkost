@@ -9,7 +9,9 @@ $this->load->view('header');
 
 <?php 
 $this->load->view('nav');
+echo '<div class="container">';
 $this->load->view('akun/v_profil');
+echo '</div>';
 $this->load->view('footer'); 
 ?>
 </body>

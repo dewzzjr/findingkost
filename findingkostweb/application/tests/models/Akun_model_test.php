@@ -83,45 +83,45 @@ class Akun_model_test extends TestCase
         $this->assertNull($actual);
     }
     
-    public function test_tambah_akun(){
-        
-        $data = [
-            'id'        => '900',
-            'username'  => 'testing',
-            'password'  => md5('testing'),
-            'nama'      => 'Testing Akun',
-            'tipe'      => '2',
-            'email'     => 'testing@testing.com',
-            'telepon'   => '123456',
-            'alamat'    => 'Testing',
-        ];
-        
-        $actual = $this->akun->tambah_akun($data);
-        $this->assertTrue($actual);
-        $delete = $this->akun->hapus_akun(900);
-        $this->assertTrue($delete);
-    }
+//    public function test_tambah_akun(){
+//        
+//        $data = [
+//            'id'        => '900',
+//            'username'  => 'testing',
+//            'password'  => md5('testing'),
+//            'nama'      => 'Testing Akun',
+//            'tipe'      => '2',
+//            'email'     => 'testing@testing.com',
+//            'telepon'   => '123456',
+//            'alamat'    => 'Testing',
+//        ];
+//        
+//        $actual = $this->akun->tambah_akun($data);
+//        $this->assertTrue($actual);
+//        $delete = $this->akun->hapus_akun(900);
+//        $this->assertTrue($delete);
+//    }
     
-    public function test_tambah_akun_fail(){
-        
-        $data = [
-            'id'        => '1',
-            'username'  => 'testing',
-            'password'  => md5('testing'),
-            'nama'      => 'Testing Akun',
-            'tipe'      => '2',
-            'email'     => 'testing@testing.com',
-            'telepon'   => '123456',
-            'alamat'    => 'Testing',
-        ];
-        
-        $actual = $this->akun->tambah_akun($data);
-        $this->assertFalse($actual);
-    }
+//    public function test_tambah_akun_fail(){
+//        
+//        $data = [
+//            'id'        => '1',
+//            'username'  => 'testing',
+//            'password'  => md5('testing'),
+//            'nama'      => 'Testing Akun',
+//            'tipe'      => '2',
+//            'email'     => 'testing@testing.com',
+//            'telepon'   => '123456',
+//            'alamat'    => 'Testing',
+//        ];
+//        
+//        $actual = $this->akun->tambah_akun($data);
+//        $this->assertFalse($actual);
+//    }
     
-    public function test_hapus_akun_fail(){
-        $actual = $this->akun->hapus_akun(-1);
-        $this->assertFalse($actual);
-    }
+//    public function test_hapus_akun_fail(){
+//        $actual = $this->akun->hapus_akun(-1);
+//        $this->assertFalse($actual);
+//    }
     
 }

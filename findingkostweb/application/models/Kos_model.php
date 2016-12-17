@@ -25,15 +25,16 @@ class Kos_model extends CI_Model {
         return $query->result();
     }
 
-    function cari($keyword) {
+    public function cari($keyword) {
         $this->db->select('*');
         $this->db->from('kos');
-        $this->db->like('alamat',$keyword);
-        $this->db->like('fasilitas',$keyword);
+        if ( isset($keyword['daerah']) ) { 
+            $this->db->like('daerah',$keyword['daerah']);
+        }
         return $this->db->get();
     }
     
-    function harga($min, $max) {
+    public function harga($min, $max) {
         $this->db->select('*');
         $this->db->from('kos');
         $this->db->where('harga >='.$min.' AND harga <='.$max);
@@ -44,32 +45,14 @@ class Kos_model extends CI_Model {
     public function hitung() {
         return $this->db->count_all('kos');
     }
-    
-    public function nama_pemilik($id_pemilik) {
-        $this->db->select('nama');
-        $this->db->from('akun');
-        $this->db->where('id', $id_pemilik);
-        $query = $this->db->get();
-        $data = $query->row_array();
-        return $data['nama'];
-    }
 
-    public function alamat_pemilik( $id_pemilik ) {
-        $this->db->select('alamat');
-        $this->db->from('akun');
-        $this->db->where('id', $id_pemilik);
+    public function penghuni ( $id_penghuni) {
+        $this->db->select('id_kos');
+        $this->db->from('penghuni');
+        $this->db->where('id', $id_penghuni);
         $query = $this->db->get();
-        $data = $query->row_array();
-        return $data['alamat'];
-    }
-
-    public function foto_kos( $id_pemilik ) {
-        $this->db->select('foto');
-        $this->db->from('kos');
-        $this->db->where('id_pemilik', $id_pemilik);
-        $query = $this->db->get();
-        $data = $query->row_array();
-        return $data['foto'];
+        $data = $query->row();
+        return ( $query->num_rows() > 0 ) ? $data->id_kos : false ; 
     }
 
     public function semua_page($limit, $start, $keyword = NULL) {
@@ -87,22 +70,22 @@ class Kos_model extends CI_Model {
         }
         return false;
    }
-
-    function tambah_kos($data) {
-        return $this->db->insert('kos', $data);
-    }
-
-    function tambah_penghuni($id_penghuni, $id_kos) {
-        $kos = $this->kos($id_kos)->row();
-        $data = [
-            'id_kos' => $id_kos,
-            'id_penghuni' => $id_penghuni,
-            'id_pemilik' => $kos->id_pemilik,
-            'status' => false,
-            'tagihan' => $kos->harga,
-            'lunas' => false
-        ];
-
-        return $this->db->insert('penghuni', $data);
-    }
+//
+//    function tambah_kos($data) {
+//        return $this->db->insert('kos', $data);
+//    }
+//
+//    function tambah_penghuni($id_penghuni, $id_kos) {
+//        $kos = $this->kos($id_kos)->row();
+//        $data = [
+//            'id_kos' => $id_kos,
+//            'id_penghuni' => $id_penghuni,
+//            'id_pemilik' => $kos->id_pemilik,
+//            'status' => false,
+//            'tagihan' => $kos->harga,
+//            'lunas' => false
+//        ];
+//
+//        return $this->db->insert('penghuni', $data);
+//    }
 }

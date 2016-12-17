@@ -12,7 +12,21 @@ class Daftar extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('akun/daftar');
+        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required|min_length[5]|max_length[255]');
+        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[akun.username]');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[akun.email]');
+        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
+        $this->form_validation->set_rules('telepon', 'No Telepon', 'trim|required|is_natural');
+        if ($this->form_validation->run() == FALSE)
+        {
+            $this->load->view('akun/daftar');
+        }
+        else
+        {
+            redirect('daftar/submit_daftar');
+        }
     }
 
     public function pencari(){
@@ -53,28 +67,6 @@ class Daftar extends CI_Controller {
             );
             $query = $this->akun_model->tambah_akun($data);
         }
-    }
-    
-    private function form($data)
-    {
-        $this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required|min_length[5]|max_length[255]');
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[15]|is_unique[akun.username]');
-        $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-        $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[akun.email]');
-        $this->form_validation->set_rules('alamat', 'Alamat', 'trim|required');
-        $this->form_validation->set_rules('telepon', 'No Telepon', 'trim|required|is_natural');
-        $this->load->view('header', $data);
-        $this->load->view('nav');
-        if ($this->form_validation->run() == FALSE)
-        {
-            $this->load->view('akun/daftar', $data);
-        }
-        else
-        {
-            $this->load->view('akun/berhasil');
-        }
-        $this->load->view('footer');
     }
     
 }

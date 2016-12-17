@@ -11,13 +11,13 @@ class Pemilik extends CI_Controller {
             redirect('akun/masuk'); // redirect
         } else
         {
-            if ( $tipe === 0 ) {
+            if ( $tipe == 0 ) {
                 redirect('admin');
             } else
-            if ( $tipe === 1 ){
+            if ( $tipe == 1 ){
                 // let them in
             } else 
-            if ( $tipe === 2 ) {
+            if ( $tipe == 2 ) {
                 redirect('pencari');
             } else {
                 show_404();
@@ -29,16 +29,21 @@ class Pemilik extends CI_Controller {
     }
 
     function index(){
-        $username = $this->session->userdata('username'); //ambil user name yang ada di session
-        $id = $this->session->userdata('id'); //ambil id dari session
-        $data['profil'] = $this->akun_model->cek_akun($username);
-        $data['kos'] = $this->kos_model->foto_kos($id);
-        $data['title'] = "Beranda";
-        $this->load->view('header', $data); //ambil title
-        $this->load->view('nav');
-        $this->load->view('pemilik/menu', $data); //ambil kos
-        $this->load->view('akun/profil', $data); //ambil profil
-        $this->load->view('footer');
+        $profil     = $this->akun_model->akun( $this->session->id );
+        //$penghuni   = $this->kos_model->penghuni( $this->session->id );
+        $data = [
+            'title'         => 'FindingKost | ' . ucwords( $profil->nama ),
+            //'link_foto'     => base_url( 'assets/images/' . $kos->foto ),
+            'link_username' => base_url( 'akun/profil/' . $profil->username ),
+            'nama'          => ucwords( $profil->nama ),
+            'alamat'        => $profil->alamat,
+            'telepon'       => $profil->telepon,
+            'email'         => $profil->email,
+            //'harga'         => number_format( $kos->harga, 2, ",", "." )
+        ];
+        //$view_penghuni = $this->get_view_penghuni( $penghuni );
+        //$data[] = $view_penghuni;
+        $this->parser->parse('pemilik/menu', $data);
     }
 
     public function kos() {
@@ -51,7 +56,7 @@ class Pemilik extends CI_Controller {
 
 	
     public function penghuni(){
-		$data['title'] = "Beranda";
+        $data['title'] = "Beranda";
         $this->load->view('header', $data);
         $this->load->view('nav');
         $this->load->view('pemilik/menu');
@@ -59,28 +64,5 @@ class Pemilik extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function pengaturan(){
-
-    }
-
-    public function submit_kos(){
-
-    }
-
-    public function submit_penghuni($pencari){
-
-    }
-
-    public function submit_tagihan(){
-        
-    }
-
-    public function submit_lunas($pencari){
-        
-    }
-
-    public function proses_data($username) {
-        
-    }
 
 }

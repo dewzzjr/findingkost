@@ -1,16 +1,28 @@
-<br>
-<br>
-<br>
-
-
+<!DOCTYPE html>
+<html>
+<head>
+<?php
+$this->load->view('header'); 
+?>
+</head>
+<body>
+    <?php $this->load->view('nav'); ?>
     <div class="container">
-        <div class="row">
-
-            <div class="col-md-3">
-                <div class="list-group">
-                	<a href="<?= base_url('akun/profil/'.$this->session->username) ?>" class="list-group-item">Profil</a>
-                    <a href="<?= base_url('pencari/bayar') ?>" class="list-group-item">Konfirmasi Pembayaran</a>
-                    <a href="#" class="list-group-item">Beri Review Kos</a>
-                    <a href="<?= base_url('pencari/kos') ?>" class="list-group-item">Kos yang Dihuni</a>
-                </div>
-            </div>
+    <ul class="collapsible popout" data-collapsible="accordion">
+        <li>
+            <div class="collapsible-header active"><i class="material-icons">filter_drama</i>Profil</div>
+            <div class="collapsible-body"><?php $this->load->view('akun/v_profil'); ?></div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>Kos yang Dihuni</div>
+            <div class="collapsible-body">{view_kos}</div>
+        </li>
+        <li>
+            <div class="collapsible-header"><i class="material-icons">payment</i>Bayar</div>
+            <div class="collapsible-body">{view_bayar}</div>
+        </li>
+    </ul>
+    </div>
+    <?php $this->load->view('footer'); ?>
+</body>
+</html>

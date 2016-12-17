@@ -6,6 +6,10 @@
 <body>
 <?php $this->load->view('nav'); ?>
 <div class="container">
+    <!-- Search Bar -->
+    <div class="row">
+        <?php $this->load->view('kos/v_cari'); ?>
+    </div>
     <!-- Pagination -->
     <div class="row text-center">
         <div class="col s12">
@@ -30,5 +34,14 @@
     </div>
 </div>
 <?php $this->load->view('footer'); ?>
+    <script>
+    $('input.autocomplete').autocomplete({
+      data: {
+        "Apple": null,
+        "Microsoft": null,
+        "Google": 'http://placehold.it/250x250'
+      }
+    });
+    </script>
 </body>
 </html>

@@ -15,18 +15,43 @@ class Akun_test extends TestCase
         $this->resetInstance();
     }
     
-    public function test_index()
+    public function test_index_login_pencari()
+    {
+        $_SESSION['username'] = "ayushaqs";
+        $_SESSION['tipe'] = "2";
+        
+        $output = $this->request('GET', 'akun');
+        $this->assertRedirect('pencari');
+    }
+    
+    public function test_index_login_pemilik()
+    {
+        $_SESSION['username'] = "rediangalih";
+        $_SESSION['tipe'] = "1";
+        $output = $this->request('GET', 'akun');
+        $this->assertRedirect('pemilik');
+    }
+    
+    public function test_index_login_admin()
+    {
+        $_SESSION['username'] = "admin";
+        $_SESSION['tipe'] = "0";
+        $output = $this->request('GET', 'akun');
+        $this->assertRedirect('admin');
+    }
+    
+    public function test_index_not_login()
     {
         $output = $this->request('GET', 'akun');
-        $this->assertContains('<strong>disini</strong>', $output);
+        $this->assertRedirect('akun/masuk');
     }
 
     public function test_profil()
     {
         $output = $this->request('GET', 'akun/profil/dewzzjr');
-        $this->assertContains('<br>dewzzpro@gmail.com', $output);
-        $this->assertContains('<br>2147483647', $output);
-        $this->assertContains('<br>123123123123', $output);
+        $this->assertContains('<a href="mailto:dewzzpro@gmail.com">dewzzpro@gmail.com</a>', $output);
+        $this->assertContains('<em>08562747444</em>', $output);
+        $this->assertContains('<h4>Dewangga Prasetya Praja</h4>', $output);
     }
     public function test_profil_pencari()
     {
@@ -50,7 +75,7 @@ class Akun_test extends TestCase
                 'username' => 'dewzzjr',
                 'password' => '',
             ]);
-        $this->assertRedirect('akun/masuk/fail');
+        $this->assertRedirect('akun/masuk?fail=true');
         $this->assertFalse( isset($_SESSION['username']) );
     }
     
@@ -60,7 +85,7 @@ class Akun_test extends TestCase
                 'username' => '',
                 'password' => '123',
             ]);
-        $this->assertRedirect('akun/masuk/fail');
+        $this->assertRedirect('akun/masuk?fail=true');
         $this->assertFalse( isset($_SESSION['username']) );
     }
     
@@ -70,7 +95,7 @@ class Akun_test extends TestCase
                 'username' => 'dewzzjr',
                 'password' => 'unmatch',
             ]);
-        $this->assertRedirect('akun/masuk/fail');
+        $this->assertRedirect('akun/masuk?fail=true');
         $this->assertFalse( isset($_SESSION['username']) );
     }
     
@@ -99,6 +124,25 @@ class Akun_test extends TestCase
         $this->request('GET', 'akun/keluar');
         $this->assertRedirect('');
         $this->assertFalse( isset($_SESSION['username']) );
+    }
+    
+    public function test_masuk(){
+        $output = $this->request('GET', 'akun/masuk');
+        $this->assertContains('<input type="password" name="password" value="" id="password" class="validate required"  />', $output);
+        $this->assertContains('<input type="text" name="username" value="" id="username" class="validate required"  />', $output);
+    }
+    
+    public function test_profil_404()
+    {
+        $this->request('GET', 'akun/profil/user_not_exist');
+        $this->assertResponseCode(404);
+//        $this->assertResponseHeader('charset=utf-8');
+    }
+    
+    public function test_profil_no_param()
+    {
+        $this->request('GET', 'akun/profil');
+        $this->assertRedirect('akun');
     }
     
     public function test_method_404()

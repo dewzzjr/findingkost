@@ -51,12 +51,12 @@
       <td class="None small"><div align="right"></div></td>
       <td class="None small"><div align="right">&nbsp;</div></td>
       <td class="None small"><acronym title="Change Risk Anti-Patterns (CRAP) Index">CRAP</acronym></td>
-      <td class="success big">       <div class="progress progress-success" style="width: 100px;">
-        <div class="bar" style="width: 100.00%;"></div>
+      <td class="danger big">       <div class="progress progress-danger" style="width: 100px;">
+        <div class="bar" style="width: 0.00%;"></div>
        </div>
 </td>
-      <td class="success small"><div align="right">100.00%</div></td>
-      <td class="success small"><div align="right">4&nbsp;/&nbsp;4</div></td>
+      <td class="danger small"><div align="right">0.00%</div></td>
+      <td class="danger small"><div align="right">0&nbsp;/&nbsp;12</div></td>
      </tr>
 
 
@@ -64,21 +64,23 @@
    </table>
    <table class="table table-borderless table-condensed">
     <tbody>
-     <tr><td><div align="right"><a name="1"></a><a href="#1">1</a></div></td><td class="codeLine">&lt;!DOCTYPE html&gt;</td></tr>
-     <tr><td><div align="right"><a name="2"></a><a href="#2">2</a></div></td><td class="codeLine">&lt;html&gt;</td></tr>
-     <tr><td><div align="right"><a name="3"></a><a href="#3">3</a></div></td><td class="codeLine">&lt;head&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="1"></a><a href="#1">1</a></div></td><td class="codeLine">&lt;!DOCTYPE html&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="2"></a><a href="#2">2</a></div></td><td class="codeLine">&lt;html&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="3"></a><a href="#3">3</a></div></td><td class="codeLine">&lt;head&gt;</td></tr>
      <tr><td><div align="right"><a name="4"></a><a href="#4">4</a></div></td><td class="codeLine">&lt;?php</td></tr>
-     <tr class="success popin" data-title="1 test covers line 5" data-content="&lt;ul&gt;&lt;li class=&quot;danger&quot;&gt;Kos_test::test_detail&lt;/li&gt;&lt;/ul&gt;" data-placement="bottom" data-html="true"><td><div align="right"><a name="5"></a><a href="#5">5</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('header');</td></tr>
+     <tr class="danger"><td><div align="right"><a name="5"></a><a href="#5">5</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('header');</td></tr>
      <tr><td><div align="right"><a name="6"></a><a href="#6">6</a></div></td><td class="codeLine">?&gt;</td></tr>
-     <tr><td><div align="right"><a name="7"></a><a href="#7">7</a></div></td><td class="codeLine">&lt;/head&gt;</td></tr>
-     <tr><td><div align="right"><a name="8"></a><a href="#8">8</a></div></td><td class="codeLine">&lt;body&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="7"></a><a href="#7">7</a></div></td><td class="codeLine">&lt;/head&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="8"></a><a href="#8">8</a></div></td><td class="codeLine">&lt;body&gt;</td></tr>
      <tr><td><div align="right"><a name="9"></a><a href="#9">9</a></div></td><td class="codeLine"></td></tr>
      <tr><td><div align="right"><a name="10"></a><a href="#10">10</a></div></td><td class="codeLine">&lt;?php</td></tr>
-     <tr class="success popin" data-title="1 test covers line 11" data-content="&lt;ul&gt;&lt;li class=&quot;danger&quot;&gt;Kos_test::test_detail&lt;/li&gt;&lt;/ul&gt;" data-placement="bottom" data-html="true"><td><div align="right"><a name="11"></a><a href="#11">11</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('nav');</td></tr>
-     <tr class="success popin" data-title="1 test covers line 12" data-content="&lt;ul&gt;&lt;li class=&quot;danger&quot;&gt;Kos_test::test_detail&lt;/li&gt;&lt;/ul&gt;" data-placement="bottom" data-html="true"><td><div align="right"><a name="12"></a><a href="#12">12</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('kos/v_detail');</td></tr>
-     <tr class="success popin" data-title="1 test covers line 13" data-content="&lt;ul&gt;&lt;li class=&quot;danger&quot;&gt;Kos_test::test_detail&lt;/li&gt;&lt;/ul&gt;" data-placement="bottom" data-html="true"><td><div align="right"><a name="13"></a><a href="#13">13</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('footer');</td></tr>
-     <tr><td><div align="right"><a name="14"></a><a href="#14">14</a></div></td><td class="codeLine">?&gt;</td></tr>
-     <tr><td><div align="right"><a name="15"></a><a href="#15">15</a></div></td><td class="codeLine">&lt;/body&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="11"></a><a href="#11">11</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('nav');</td></tr>
+     <tr class="danger"><td><div align="right"><a name="12"></a><a href="#12">12</a></div></td><td class="codeLine">echo '&lt;div class=&quot;container&quot;&gt;';</td></tr>
+     <tr class="danger"><td><div align="right"><a name="13"></a><a href="#13">13</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('kos/v_detail');</td></tr>
+     <tr class="danger"><td><div align="right"><a name="14"></a><a href="#14">14</a></div></td><td class="codeLine">echo '&lt;/div&gt;';</td></tr>
+     <tr class="danger"><td><div align="right"><a name="15"></a><a href="#15">15</a></div></td><td class="codeLine">$this-&gt;load-&gt;view('footer');</td></tr>
+     <tr><td><div align="right"><a name="16"></a><a href="#16">16</a></div></td><td class="codeLine">?&gt;</td></tr>
+     <tr class="danger"><td><div align="right"><a name="17"></a><a href="#17">17</a></div></td><td class="codeLine">&lt;/body&gt;</td></tr>
 
     </tbody>
    </table>
@@ -90,7 +92,7 @@
      <span class="warning"><strong>Dead Code</strong></span>
     </p>
     <p>
-     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.2.11</a> using <a href="http://www.php.net/" target="_top">PHP 5.6.15</a> and <a href="http://phpunit.de/">PHPUnit 3.7.21</a> at Thu Dec 15 14:19:50 CET 2016.</small>
+     <small>Generated by <a href="http://github.com/sebastianbergmann/php-code-coverage" target="_top">PHP_CodeCoverage 1.2.11</a> using <a href="http://www.php.net/" target="_top">PHP 5.6.15</a> and <a href="http://phpunit.de/">PHPUnit 3.7.21</a> at Fri Dec 16 14:00:41 CET 2016.</small>
     </p>
    </footer>
   </div>

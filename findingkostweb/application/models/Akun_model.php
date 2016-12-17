@@ -26,31 +26,42 @@ class Akun_model extends CI_Model {
         $query = $this->db->get_where('penghuni', array('id_penghuni'=>$id_penghuni));
         return $query;
     }
+    
+    public function status() {
+        if ( $this->session->has_userdata('username') ) :
+            $id_penghuni = $this->session->id;
+            $query = $this->penghuni_kos($id_penghuni);
+            $status = $query->num_rows();
+        else :
+            $status = -1;
+        endif;
+        return $status;
+    }
 	
-    public function tambah_akun($data) {
-        $this->db->select('*');
-        $this->db->from('akun');
-        $this->db->where('id', $data['id']);
-        $this->db->or_where('username', $data['username']);
-        
-        $exist = ( $this->db->get()->num_rows() > 0 ) ? true : false ;
-        if ( ! $exist ) {
-            $query = $this->db->insert('akun', $data);
-            return ( ! $query ) ?  $this->db->error() : true; 
-        }
-        return false;
-    }
+//    public function tambah_akun($data) {
+//        $this->db->select('*');
+//        $this->db->from('akun');
+//        $this->db->where('id', $data['id']);
+//        $this->db->or_where('username', $data['username']);
+//        
+//        $exist = ( $this->db->get()->num_rows() > 0 ) ? true : false ;
+//        if ( ! $exist ) {
+//            $query = $this->db->insert('akun', $data);
+//            return ( ! $query ) ?  $this->db->error() : true; 
+//        }
+//        return false;
+//    }
 
-    public function hapus_akun($id) {
-        $this->db->select('*');
-        $this->db->from('akun');
-        $this->db->where('id', $id);
-        
-        $exist = ( $this->db->get()->num_rows() > 0 ) ? true : false ;
-        if ( $exist ) {
-            $query = $this->db->delete('akun', array('id' => $id));
-            return ( ! $query ) ?  $this->db->error() : true; 
-        }
-        return false;
-    }
+//    public function hapus_akun($id) {
+//        $this->db->select('*');
+//        $this->db->from('akun');
+//        $this->db->where('id', $id);
+//        
+//        $exist = ( $this->db->get()->num_rows() > 0 ) ? true : false ;
+//        if ( $exist ) {
+//            $query = $this->db->delete('akun', array('id' => $id));
+//            return ( ! $query ) ?  $this->db->error() : true; 
+//        }
+//        return false;
+//    }
 }

@@ -1,5 +1,5 @@
 <div class="col s12 m6 l4">
-    <div class="card">
+    <div class="card large">
         <div class="card-image">
             <image src="{image}" class="materialboxed" alt="{id}" />
             <span class="card-title">{id}</span>

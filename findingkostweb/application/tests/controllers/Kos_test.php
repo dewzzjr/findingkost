@@ -18,23 +18,46 @@ class Kos_test extends TestCase
     public function test_index()
     {
         $output = $this->request('GET', '/');
-        $this->assertContains('<em>Dapatkan hunian yang anda inginkan</em>', $output);
+        $this->assertContains('Finding<strong>Kost</strong>', $output);
     }
 
     public function test_cari()
     {
         $output = $this->request('GET', 'kos/cari/6');
-        $this->assertContains('<p>Kamar tidur <br>Kamar mandi <br>Parkiran <br>Dapur <br>AC</p>', $output);
+        $this->assertContains('<p>Kamar tidur 3x4, Kamar mandi dalam, Dapur, Parkir Mobil</p>', $output);
     }
+    
     public function test_detail()
     {
         $output = $this->request('GET', 'kos/detail/1');
-        $this->assertContains('<h2>Redian Galih Irianti</h2>', $output);
-        $this->assertContains('Tegal Mulyorejo Baru 114 Mulyorejo', $output);
-        $this->assertContains('<br>81675438</p>', $output);
-        $this->assertContains('<h4>Fasilitas :</h4>', $output);
-        $this->assertContains('Kamar Tidur <br>Kamar mandi <br>Dapur <br>Parkir', $output);
-        $this->assertContains('Rp 500.000,00 / bulan', $output);
+        $this->assertContains('<i class="material-icons right">more_vert</i>', $output);
+        $this->assertContains('<mark><b>Rp 500.000,00 / bulan-</b></mark>', $output);
+        $this->assertContains('<strong>Jalan Tegal Mulyorejo Baru 114 Mulyosari, Surabaya</strong>', $output);
+        $this->assertContains('<p>Kamar tidur 3x4, Kamar mandi dalam, Dapur, Parkir Mobil</p>', $output);
+    }
+    
+    public function test_detail_notlogin()
+    {
+        $output = $this->request('GET', 'kos/detail/1');
+        $this->assertContains('<li><a href="http://localhost/C:\xampp\php\phpunit/akun#login"><i class="material-icons right">play_for_work</i>MASUK</a></li>', $output);
+    }
+    
+    public function test_detail_login_pencari()
+    {
+        $_SESSION['username'] = 'dewzzjr';
+        $_SESSION['id']       = '999';
+        $_SESSION['tipe']     = '2';
+        $output = $this->request('GET', 'kos/detail/1');
+        $this->assertContains('<p><a class="btn waves-effect" href="http://localhost/C:\xampp\php\phpunit/pencari/daftar/1">Daftar sekarang</a></p>', $output);
+    }
+    
+    public function test_detail_login_penghuni()
+    {
+        $_SESSION['username'] = 'ayushaqs';
+        $_SESSION['id']       = '1';
+        $_SESSION['tipe']     = '2';
+        $output = $this->request('GET', 'kos/detail/1');
+        $this->assertContains('&nbsp;', $output);
     }
     
     public function test_method_404()
